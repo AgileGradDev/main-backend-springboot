@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,11 +55,13 @@ public class UserController {
     @ApiOperation(value = "회원 수정", notes = "admin 입장에서 회원정보를 수정한다")
     @PutMapping(value = "/user")
     public SingleResult<User> modify(
+            @ApiParam(value = "회원 번호", required = true) @RequestParam Long user_id,
             @ApiParam(value = "회원 나이", required = true) @RequestParam int age,
             @ApiParam(value = "회원 이메일", required = true) @RequestParam String email,
             @ApiParam(value = "회원 이름", required = true) @RequestParam String name,
             @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phonenumber,
             @ApiParam(value = "회원 성별", required = true) @RequestParam char sex) {
+        userJpaRepo.deleteById(user_id);
         User user = User.builder()
                 .user_age(age)
                 .user_email(email)
