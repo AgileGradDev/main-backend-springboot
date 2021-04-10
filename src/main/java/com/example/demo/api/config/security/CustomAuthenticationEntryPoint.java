@@ -1,2 +1,17 @@
-package com.example.demo.api.config.security;public class CustomAuthenticationEntryPoint {
+package com.example.demo.api.config.security;
+
+import org.springframework.security.web.AuthenticationEntryPoint;
+
+import javax.naming.AuthenticationException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response, org.springframework.security.core.AuthenticationException authException) throws IOException, ServletException {
+        response.sendRedirect("/exception/entrypoint");
+    }
 }

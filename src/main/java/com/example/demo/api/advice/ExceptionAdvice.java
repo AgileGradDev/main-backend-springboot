@@ -57,7 +57,7 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(CUserExistException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public CommonResult communicationException(HttpServletRequest request, CUserExistException e) {
+    public CommonResult userExistException(HttpServletRequest request, CUserExistException e) {
         return responseService.getFailResult(Integer.parseInt(getMessage("existingUser.code")), getMessage("existingUser.msg"));
     }
 
@@ -71,5 +71,11 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public CommonResult resourceNotExistException(HttpServletRequest request, CResourceNotExistException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("resourceNotExist.code")), getMessage("resourceNotExist.msg"));
+    }
+
+    @ExceptionHandler(CEmailSigninFailedException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    protected CommonResult emailSigninFailed(HttpServletRequest request, CEmailSigninFailedException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("emailSigninFailed.code")), getMessage("emailSigninFailed.msg"));
     }
 }
