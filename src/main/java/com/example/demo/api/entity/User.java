@@ -39,6 +39,9 @@ public class User implements UserDetails {
     private int age;
     @Column(nullable = false)
     private char sex;
+    @Column(length = 100)
+    private String provider;
+
 //    @Column(length = 100)
 //    private String provider;
 
