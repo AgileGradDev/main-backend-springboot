@@ -12,3 +12,9 @@ spring:
     messages:
         basename: i18n/exception
         encoding: UTF-8
+    url:
+        base: localhost
+    social:
+        kakao:
+            client_id: 123
+            redirect: redirect_tmp_url
