@@ -49,7 +49,7 @@ public class UserController {
     public User save(@ApiParam(value = "회원 나이", required = true) @RequestParam int age,
                      @ApiParam(value = "회원 이메일", required = true) @RequestParam String email,
                      @ApiParam(value = "회원 이름", required = true) @RequestParam String name,
-                     @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phonenumber,
+                     @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phone,
                      @ApiParam(value = "회원 비밀번호", required = true) @RequestParam String password,
                      @ApiParam(value = "회원 성별", required = true) @RequestParam char sex,
                      @ApiParam(value = "admin 권한 줄거면 Y or N", required = false) @RequestParam String is_admin
@@ -62,7 +62,7 @@ public class UserController {
                 .age(age)
                 .email(email)
                 .name(name)
-                .phonenumber(phonenumber)
+                .phone(phone)
                 .password(passwordEncoder.encode(password))
                 .sex(sex)
                 .roles(Collections.singletonList("ROLE_USER"))
@@ -108,7 +108,7 @@ public class UserController {
     public SingleResult<User> modify_now(
             @ApiParam(value = "회원 나이", required = true) @RequestParam int age,
             @ApiParam(value = "회원 이름", required = true) @RequestParam String name,
-            @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phonenumber,
+            @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phone,
             @ApiParam(value = "회원 비밀번호", required = true) @RequestParam String password,
             @ApiParam(value = "회원 성별", required = true) @RequestParam char sex) {
 
@@ -118,7 +118,7 @@ public class UserController {
         User user = (User) authentication.getPrincipal();
         user.setAge(age)
                 .setName(name)
-                .setPhonenumber(phonenumber)
+                .setPhone(phone)
                 .setPassword(passwordEncoder.encode(password))
                 .setSex(sex);
 
@@ -142,7 +142,7 @@ public class UserController {
             @ApiParam(value = "기존 회원 이메일", required = true) @RequestParam String email,
             @ApiParam(value = "회원 이메일", required = true) @RequestParam String new_email,
             @ApiParam(value = "회원 이름", required = true) @RequestParam String name,
-            @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phonenumber,
+            @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phone,
             @ApiParam(value = "회원 비밀번호", required = true) @RequestParam String password,
             @ApiParam(value = "회원 성별", required = true) @RequestParam char sex) {
 
@@ -155,7 +155,7 @@ public class UserController {
                 .setAge(age)
                 .setEmail(email)
                 .setName(name)
-                .setPhonenumber(phonenumber)
+                .setPhone(phone)
                 .setPassword(password)
                 .setSex(sex);
         return responseService.getSingleResult(userJpaRepo.save(new_user));

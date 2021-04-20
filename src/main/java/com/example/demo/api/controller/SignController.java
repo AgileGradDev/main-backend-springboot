@@ -51,7 +51,7 @@ public class SignController {
     public CommonResult signin(@ApiParam(value = "회원ID (이메일)", required = true) @RequestParam String id,
                                @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
                                @ApiParam(value = "이름", required = true) @RequestParam String name,
-                               @ApiParam(value = "전화번호", required = true) @RequestParam String phonenumber,
+                               @ApiParam(value = "전화번호", required = true) @RequestParam String phone,
                                @ApiParam(value = "나이", required = true) @RequestParam int age,
                                @ApiParam(value = "성별 : M or W", required = true) @RequestParam char sex
     ) {
@@ -64,7 +64,7 @@ public class SignController {
                 .password(passwordEncoder.encode(password))
                 .name(name)
                 .age(age)
-                .phonenumber(phonenumber)
+                .phone(phone)
                 .sex(sex)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build();
@@ -91,7 +91,7 @@ public class SignController {
     public CommonResult signupProvider(@ApiParam(value = "서비스 제공자 provider", required = true, defaultValue = "kakao") @PathVariable String provider,
                                        @ApiParam(value = "소셜 access_token", required = true) @RequestParam String accessToken,
                                        @ApiParam(value = "이름", required = true) @RequestParam String name,
-                                       @ApiParam(value = "전화번호", required = true) @RequestParam String phonenumber,
+                                       @ApiParam(value = "전화번호", required = true) @RequestParam String phone,
                                        @ApiParam(value = "소셜 access_token", required = true) @RequestParam int age,
                                        @ApiParam(value = "소셜 access_token", required = true) @RequestParam char sex) {
 
@@ -105,7 +105,7 @@ public class SignController {
                 .provider(provider)
                 .name(name)
                 .age(age)
-                .phonenumber(phonenumber)
+                .phone(phone)
                 .sex(sex)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build());
