@@ -26,19 +26,26 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(length = 20, nullable = false)
     private String name;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(length = 100)
     private String password;
+
     @Column(length = 13, nullable = false)
     private String phone;
+
     @Column(unique = true, length = 50, nullable = false)
     private String email;
+
     @Column(nullable = false)
     private int age;
+
     @Column(nullable = false)
     private char sex;
+
     @Column(length = 100)
     private String provider;
 

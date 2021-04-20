@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface StoreJpaRepo extends JpaRepository<Store, Long> {
-    Store findByRname(String name);
+    Store findByName(String name);
 
     @Transactional
-    void deleteByRname(String name);
+    void deleteByName(String name);
 }

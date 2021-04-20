@@ -17,16 +17,21 @@ import javax.persistence.*;
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long rid;
+    private long id;
+
     @Column(length = 100, nullable = false, unique = true)
-    private String rname;
+    private String name;
+
     @Column(length = 1000)
-    private String rdetail;
+    private String description;
+
     @Column(length = 50, nullable = false)
     private String rhours_operation;
+
     @Column(nullable = false)
-    private float rrating;
+    private float rating;
+
     @Column(length = 50, nullable = false)
-    private String rlocation;
+    private String location;
 
 }
