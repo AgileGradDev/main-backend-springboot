@@ -104,8 +104,8 @@ public class UserController {
     })
     @PreAuthorize("isAuthenticated()")
     @ApiOperation(value = "현재 로그인한 회원 정보 수정", notes = "현재 로그인한 회원의 정보를 수정한다")
-    @PutMapping(value = "/user/now/modify")
-    public SingleResult<User> modify_now(
+    @PutMapping(value = "/user/now/update")
+    public SingleResult<User> update_now(
             @ApiParam(value = "회원 나이", required = true) @RequestParam int age,
             @ApiParam(value = "회원 이름", required = true) @RequestParam String name,
             @ApiParam(value = "회원 전화번호", required = true) @RequestParam String phone,
