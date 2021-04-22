@@ -76,7 +76,7 @@ public class CommentController {
     @PreAuthorize("isAuthenticated() or hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "댓글 삭제", notes = "댓글을 삭제한다.")
     @DeleteMapping(value = "/{commentId}")
-    public CommonResult deletePost(@PathVariable Long commentId, String content) {
+    public CommonResult deletePost(@PathVariable Long commentId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         return responseService.getSingleResult(commentService.deleteComment(commentId, user.getId()));

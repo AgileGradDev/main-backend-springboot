@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CommentJpaRepo extends JpaRepository<Comment, Long> {
-    List<Comment> findByRid(Store store);
+    List<Comment> findByStore(Store store);
 
-//    List<Comment> findByRid(Long rid);
+
 
     List<Comment> findByUser(User user);
 }
