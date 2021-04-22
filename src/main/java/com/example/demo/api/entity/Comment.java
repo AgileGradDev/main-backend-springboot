@@ -33,7 +33,7 @@ public class Comment {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rid", referencedColumnName = "rid")
+    @JoinColumn(name = "rid", referencedColumnName = "id")
     private Store store;
 
     public Comment(User user, Store store, String content, float rating){

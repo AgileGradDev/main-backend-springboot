@@ -27,7 +27,7 @@ public class CommentService {
     private final StoreJpaRepo storeJpaRepo;
 
     public Store findStore(String storeName) {
-        return Optional.ofNullable(storeJpaRepo.findByRname(storeName)).orElseThrow(CResourceNotExistException::new);
+        return Optional.ofNullable(storeJpaRepo.findByName(storeName)).orElseThrow(CResourceNotExistException::new);
     }
 
     public List<Comment> findComments(String storeName){
