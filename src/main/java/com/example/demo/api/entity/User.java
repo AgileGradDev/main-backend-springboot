@@ -49,8 +49,6 @@ public class User implements UserDetails {
     @Column(length = 100)
     private String provider;
 
-//    @Column(length = 100)
-//    private String provider;
 
     @Column
     @ElementCollection(fetch = FetchType.EAGER)

@@ -137,7 +137,7 @@ public class UserController {
     })
     @ApiOperation(value = "회원 수정", notes = "admin 입장에서 회원정보를 수정한다")
     @PutMapping(value = "/user")
-    public SingleResult<User> modify(
+    public SingleResult<User> update(
             @ApiParam(value = "회원 나이", required = true) @RequestParam int age,
             @ApiParam(value = "기존 회원 이메일", required = true) @RequestParam String email,
             @ApiParam(value = "회원 이메일", required = true) @RequestParam String new_email,
