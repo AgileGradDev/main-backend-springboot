@@ -8,5 +8,5 @@ public interface StoreJpaRepo extends JpaRepository<Store, Long> {
     Store findByName(String name);
 
     @Transactional
-    void deleteByname(String name);
+    void deleteByName(String name);
 }
