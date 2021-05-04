@@ -2,6 +2,7 @@ package com.example.demo.api.controller;
 
 import com.example.demo.api.entity.Store;
 import com.example.demo.api.model.response.CommonResult;
+import com.example.demo.api.model.response.ListResult;
 import com.example.demo.api.model.response.SingleResult;
 import com.example.demo.api.repo.StoreJpaRepo;
 import com.example.demo.api.service.ResponseService;
@@ -24,6 +25,12 @@ public class StoreController {
     @GetMapping(value = "/{name}")
     public SingleResult<Store> findStoreByName(@PathVariable String name){
         return responseService.getSingleResult(storeJpaRepo.findByName(name));
+    }
+
+    @ApiOperation(value = "MVP 전용 API", notes = "식당 정보 전체 조회")
+    @GetMapping(value = "/all")
+    public ListResult<Store> listStore() {
+        return responseService.getListResult(storeJpaRepo.findAll());
     }
 
     @ApiOperation(value = "상점 등록", notes = "상점 등록한다.")
