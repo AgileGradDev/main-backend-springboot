@@ -25,8 +25,8 @@ import java.util.Optional;
 @Api(tags = {"Sign"})
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/sign")
-public class SignController {
+@RequestMapping(value = "/auth")
+public class AuthController {
 
     private final UserJpaRepo userJpaRepo;
     private final JwtTokenProvider jwtTokenProvider;
@@ -36,7 +36,7 @@ public class SignController {
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
     @PostMapping(value = "/signin")
-    public SingleResult<String> signin(@ApiParam(value = "회원ID : 이메일", required = true) @RequestParam String id,
+    public SingleResult<String> signIn(@ApiParam(value = "회원ID : 이메일", required = true) @RequestParam String id,
                                        @ApiParam(value = "비밀번호", required = true) @RequestParam String password) {
         User user = userJpaRepo.findByEmail(id).orElseThrow(CEmailSigninFailedException::new);
         if (!passwordEncoder.matches(password, user.getPassword()))
@@ -48,7 +48,7 @@ public class SignController {
 
     @ApiOperation(value = "가입", notes = "회원가입을 한다.")
     @PostMapping(value = "/signup")
-    public CommonResult signin(@ApiParam(value = "회원ID (이메일)", required = true) @RequestParam String id,
+    public CommonResult signUp(@ApiParam(value = "회원ID (이메일)", required = true) @RequestParam String id,
                                @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
                                @ApiParam(value = "이름", required = true) @RequestParam String name,
                                @ApiParam(value = "전화번호", required = true) @RequestParam String phone,
@@ -77,7 +77,7 @@ public class SignController {
 
     @ApiOperation(value = "소셜 로그인", notes = "소셜 회원 로그인을 한다.")
     @PostMapping(value = "/signin/{provider}")
-    public SingleResult<String> signinByProvider(
+    public SingleResult<String> signInByProvider(
             @ApiParam(value = "서비스 제공자 provider", required = true, defaultValue = "kakao") @PathVariable String provider,
             @ApiParam(value = "소셜 access_token", required = true) @RequestParam String accessToken) {
 
@@ -88,7 +88,7 @@ public class SignController {
 
     @ApiOperation(value = "소셜 계정 가입", notes = "소셜 계정 회원가입을 한다.")
     @PostMapping(value = "/signup/{provider}")
-    public CommonResult signupProvider(@ApiParam(value = "서비스 제공자 provider", required = true, defaultValue = "kakao") @PathVariable String provider,
+    public CommonResult signUpByProvider(@ApiParam(value = "서비스 제공자 provider", required = true, defaultValue = "kakao") @PathVariable String provider,
                                        @ApiParam(value = "소셜 access_token", required = true) @RequestParam String accessToken,
                                        @ApiParam(value = "이름", required = true) @RequestParam String name,
                                        @ApiParam(value = "전화번호", required = true) @RequestParam String phone,
