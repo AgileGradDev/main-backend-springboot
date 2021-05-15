@@ -15,11 +15,11 @@ public class Good {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "uid", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "rid", referencedColumnName = "id")
+    @JoinColumn(name = "store_id", referencedColumnName = "id")
     private Store store;
 
     @Builder

@@ -10,7 +10,7 @@ import com.agd.backend.api.advice.exception.CEmailSigninFailedException;
 import com.agd.backend.api.advice.exception.CUserExistException;
 import com.agd.backend.api.advice.exception.CUserNotFoundException;
 import com.agd.backend.api.model.response.CommonResult;
-import com.agd.backend.api.repo.UserJpaRepo;
+import com.agd.backend.api.repository.UserJpaRepository;
 import com.agd.backend.api.service.user.KakaoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +28,7 @@ import java.util.Optional;
 @RequestMapping(value = "/auth")
 public class AuthController {
 
-    private final UserJpaRepo userJpaRepo;
+    private final UserJpaRepository userJpaRepo;
     private final JwtTokenProvider jwtTokenProvider;
     private final ResponseService responseService;
     private final PasswordEncoder passwordEncoder;

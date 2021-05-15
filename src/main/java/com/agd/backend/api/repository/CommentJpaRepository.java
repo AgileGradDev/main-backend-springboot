@@ -1,4 +1,4 @@
-package com.agd.backend.api.repo;
+package com.agd.backend.api.repository;
 
 import com.agd.backend.api.entity.Store;
 import com.agd.backend.api.entity.User;
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CommentJpaRepo extends JpaRepository<Comment, Long> {
+public interface CommentJpaRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByStore(Store store);
 
 

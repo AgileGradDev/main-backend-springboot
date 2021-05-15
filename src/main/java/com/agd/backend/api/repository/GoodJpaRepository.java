@@ -1,4 +1,4 @@
-package com.agd.backend.api.repo;
+package com.agd.backend.api.repository;
 
 import com.agd.backend.api.entity.Good;
 import com.agd.backend.api.entity.Store;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface GoodJpaRepo extends JpaRepository<Good, Long> {
+public interface GoodJpaRepository extends JpaRepository<Good, Long> {
     List<Good> findByStore(Store store);
 
     List<Good> findByUser(User user);

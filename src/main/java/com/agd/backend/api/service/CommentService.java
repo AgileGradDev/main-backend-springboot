@@ -5,9 +5,9 @@ import com.agd.backend.api.advice.exception.CResourceNotExistException;
 import com.agd.backend.api.advice.exception.CUserNotFoundException;
 import com.agd.backend.api.entity.Store;
 import com.agd.backend.api.entity.User;
-import com.agd.backend.api.repo.CommentJpaRepo;
-import com.agd.backend.api.repo.StoreJpaRepo;
-import com.agd.backend.api.repo.UserJpaRepo;
+import com.agd.backend.api.repository.CommentJpaRepository;
+import com.agd.backend.api.repository.StoreJpaRepository;
+import com.agd.backend.api.repository.UserJpaRepository;
 import com.agd.backend.api.entity.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,9 +21,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CommentService {
 
-    private final CommentJpaRepo commentJpaRepo;
-    private final UserJpaRepo userJpaRepo;
-    private final StoreJpaRepo storeJpaRepo;
+    private final CommentJpaRepository commentJpaRepo;
+    private final UserJpaRepository userJpaRepo;
+    private final StoreJpaRepository storeJpaRepo;
 
     public Store findStore(String storeName) {
         return Optional.ofNullable(storeJpaRepo.findByName(storeName)).orElseThrow(CResourceNotExistException::new);

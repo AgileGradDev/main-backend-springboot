@@ -6,7 +6,7 @@ import com.agd.backend.api.advice.exception.CUserNotFoundException;
 import com.agd.backend.api.entity.User;
 import com.agd.backend.api.model.response.CommonResult;
 import com.agd.backend.api.model.response.SingleResult;
-import com.agd.backend.api.repo.UserJpaRepo;
+import com.agd.backend.api.repository.UserJpaRepository;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/admin")
 public class UserController {
-    private final UserJpaRepo userJpaRepo;
+    private final UserJpaRepository userJpaRepository;
 
     private final ResponseService responseService;
     private final PasswordEncoder passwordEncoder;
@@ -36,7 +36,7 @@ public class UserController {
     @ApiOperation(value = "회원 조회", notes = "email로 회원을 조회한다")
     @GetMapping(value = "/user/{email}")
     public SingleResult<User> findUserById(@ApiParam(value = "회원 email", required = true) @PathVariable String email) {
-        return responseService.getSingleResult(userJpaRepo.findByEmail(email).orElseThrow(CUserNotFoundException::new));
+        return responseService.getSingleResult(userJpaRepository.findByEmail(email).orElseThrow(CUserNotFoundException::new));
     }
 
     @ApiImplicitParams({
@@ -54,7 +54,7 @@ public class UserController {
                      @ApiParam(value = "admin 권한 줄거면 Y or N", required = false) @RequestParam String is_admin
     ) {
 
-        if (userJpaRepo.findByEmail(email).isPresent())
+        if (userJpaRepository.findByEmail(email).isPresent())
             throw new CUserExistException();
 
         User user = User.builder()
@@ -71,7 +71,7 @@ public class UserController {
             user.setRoles(Collections.singletonList("ROLE_ADMIN"));
         }
 
-        return userJpaRepo.save(user);
+        return userJpaRepository.save(user);
     }
 
     @ApiImplicitParams({
@@ -81,7 +81,7 @@ public class UserController {
     @ApiOperation(value = "모든 회원 조회", notes = "admin 입장에서 모든 회원을 조회한다")
     @GetMapping(value = "/users")
     public List<User> findAllUser() {
-        return userJpaRepo.findAll();
+        return userJpaRepository.findAll();
     }
 
     @ApiImplicitParams({
@@ -121,7 +121,7 @@ public class UserController {
                 .setPassword(passwordEncoder.encode(password))
                 .setSex(sex);
 
-        return responseService.getSingleResult(userJpaRepo.save(user));
+        return responseService.getSingleResult(userJpaRepository.save(user));
     }
 
 
@@ -140,10 +140,10 @@ public class UserController {
             @ApiParam(value = "회원 비밀번호", required = true) @RequestParam String password,
             @ApiParam(value = "회원 성별", required = true) @RequestParam char sex) {
 
-        if (userJpaRepo.findByEmail(new_email).isPresent())
+        if (userJpaRepository.findByEmail(new_email).isPresent())
             throw new CUserExistException();
 
-        User user = userJpaRepo.findByEmail(email).orElseThrow(CUserExistException::new);
+        User user = userJpaRepository.findByEmail(email).orElseThrow(CUserExistException::new);
 
         User new_user = user
                 .setAge(age)
@@ -152,7 +152,7 @@ public class UserController {
                 .setPhone(phone)
                 .setPassword(password)
                 .setSex(sex);
-        return responseService.getSingleResult(userJpaRepo.save(new_user));
+        return responseService.getSingleResult(userJpaRepository.save(new_user));
     }
 
     @PreAuthorize("isAuthenticated() and hasRole('ROLE_ADMIN')")
@@ -163,9 +163,9 @@ public class UserController {
     @DeleteMapping(value = "/user/{email}")
     public CommonResult delete(
             @ApiParam(value = "회원 email", required = true) @PathVariable String email) {
-        User user = userJpaRepo.findByEmail(email).orElseThrow(CUserNotFoundException::new);
+        User user = userJpaRepository.findByEmail(email).orElseThrow(CUserNotFoundException::new);
 
-        userJpaRepo.deleteById(user.getId());
+        userJpaRepository.deleteById(user.getId());
         // 성공 결과 정보만 필요한경우 getSuccessResult()를 이용하여 결과를 출력한다.
         return responseService.getSuccessResult();
     }

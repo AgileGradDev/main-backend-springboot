@@ -1,14 +1,14 @@
 package com.agd.backend.api.service;
 
 import com.agd.backend.api.entity.User;
-import com.agd.backend.api.repo.StoreJpaRepo;
+import com.agd.backend.api.repository.StoreJpaRepository;
 import com.agd.backend.api.advice.exception.CNotOwnerException;
 import com.agd.backend.api.advice.exception.CResourceNotExistException;
 import com.agd.backend.api.advice.exception.CUserNotFoundException;
 import com.agd.backend.api.entity.Good;
 import com.agd.backend.api.entity.Store;
-import com.agd.backend.api.repo.GoodJpaRepo;
-import com.agd.backend.api.repo.UserJpaRepo;
+import com.agd.backend.api.repository.GoodJpaRepository;
+import com.agd.backend.api.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +21,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GoodService {
 
-    private final GoodJpaRepo goodJpaRepo;
-    private final UserJpaRepo userJpaRepo;
-    private final StoreJpaRepo storeJpaRepo;
+    private final GoodJpaRepository goodJpaRepo;
+    private final UserJpaRepository userJpaRepo;
+    private final StoreJpaRepository storeJpaRepo;
 
     public Store findStore(String storeName) {
         return Optional.ofNullable(storeJpaRepo.findByName(storeName)).orElseThrow(CResourceNotExistException::new);
