@@ -1,7 +1,7 @@
 package com.agd.backend.api.service;
 
 import com.agd.backend.api.entity.User;
-import com.agd.backend.api.repository.StoreJpaRepository;
+import com.agd.backend.api.repository.StoreRepository;
 import com.agd.backend.api.advice.exception.CNotOwnerException;
 import com.agd.backend.api.advice.exception.CResourceNotExistException;
 import com.agd.backend.api.advice.exception.CUserNotFoundException;
@@ -23,7 +23,7 @@ public class GoodService {
 
     private final GoodJpaRepository goodJpaRepo;
     private final UserJpaRepository userJpaRepo;
-    private final StoreJpaRepository storeJpaRepo;
+    private final StoreRepository storeJpaRepo;
 
     public Store findStore(String storeName) {
         return Optional.ofNullable(storeJpaRepo.findByName(storeName)).orElseThrow(CResourceNotExistException::new);

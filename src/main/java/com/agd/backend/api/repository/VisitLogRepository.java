@@ -8,8 +8,6 @@ import java.util.UUID;
 
 public interface VisitLogRepository extends JpaRepository<VisitLog, UUID> {
 
-    VisitLog getById(UUID id);
-
     @Transactional
     void deleteById(UUID id);
 }

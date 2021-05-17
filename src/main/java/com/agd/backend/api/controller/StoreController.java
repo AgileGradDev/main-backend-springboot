@@ -5,7 +5,7 @@ import com.agd.backend.api.model.response.SingleResult;
 import com.agd.backend.api.service.ResponseService;
 import com.agd.backend.api.entity.Store;
 import com.agd.backend.api.model.response.CommonResult;
-import com.agd.backend.api.repository.StoreJpaRepository;
+import com.agd.backend.api.repository.StoreRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"Store"})
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "store")
+@RequestMapping(value = "/store")
 public class StoreController {
 
-    private final StoreJpaRepository storeJpaRepository;
+    private final StoreRepository storeJpaRepository;
     private final ResponseService responseService;
 
     @ApiOperation(value = "식당 정보 조회", notes = "이름으로 식당 정보를 조회한다")

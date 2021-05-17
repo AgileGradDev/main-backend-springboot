@@ -6,7 +6,7 @@ import com.agd.backend.api.advice.exception.CUserNotFoundException;
 import com.agd.backend.api.entity.Store;
 import com.agd.backend.api.entity.User;
 import com.agd.backend.api.repository.CommentJpaRepository;
-import com.agd.backend.api.repository.StoreJpaRepository;
+import com.agd.backend.api.repository.StoreRepository;
 import com.agd.backend.api.repository.UserJpaRepository;
 import com.agd.backend.api.entity.Comment;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class CommentService {
 
     private final CommentJpaRepository commentJpaRepo;
     private final UserJpaRepository userJpaRepo;
-    private final StoreJpaRepository storeJpaRepo;
+    private final StoreRepository storeJpaRepo;
 
     public Store findStore(String storeName) {
         return Optional.ofNullable(storeJpaRepo.findByName(storeName)).orElseThrow(CResourceNotExistException::new);

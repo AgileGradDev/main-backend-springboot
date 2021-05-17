@@ -2,11 +2,10 @@ package com.agd.backend.api.service.visit_log;
 
 import com.agd.backend.api.entity.Store;
 import com.agd.backend.api.entity.VisitLog;
-import com.agd.backend.api.repository.StoreJpaRepository;
+import com.agd.backend.api.repository.StoreRepository;
 import com.agd.backend.api.repository.VisitLogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.UUID;
@@ -17,7 +16,7 @@ import java.util.UUID;
 public class VisitLogService {
 
     private final VisitLogRepository visitLogRepository;
-    private final StoreJpaRepository storeJpaRepository;
+    private final StoreRepository storeJpaRepository;
 
     public VisitLog createVisitLog(UUID storeId, float rating, String text) {
         Store store = storeJpaRepository.findById(storeId).orElseThrow(IllegalArgumentException::new);
