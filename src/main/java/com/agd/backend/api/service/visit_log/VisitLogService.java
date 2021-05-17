@@ -19,8 +19,8 @@ public class VisitLogService {
     private final StoreRepository storeJpaRepository;
 
     public VisitLog createVisitLog(UUID storeId, float rating, String text) {
-        Store store = storeJpaRepository.findById(storeId).orElseThrow(IllegalArgumentException::new);
-        VisitLog newVisitLog = new VisitLog(store, rating, text);
+        storeJpaRepository.findById(storeId).orElseThrow(IllegalArgumentException::new);
+        VisitLog newVisitLog = new VisitLog(storeId, rating, text);
         return visitLogRepository.save(newVisitLog);
     }
 

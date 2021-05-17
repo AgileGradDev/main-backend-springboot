@@ -36,29 +36,20 @@ public class VisitLog {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @Column
+    private Long userId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id", referencedColumnName = "id")
-    private Store store;
+    @Type(type = "uuid-char")
+    @Column(length = 36)
+    private UUID storeId;
 
     @Column(nullable = false)
     private float rating;
 
     @Column(nullable = false, length = 500)
     private String text;
-
-//    public VisitLog(User user, Store store, float rating, String text) {
-//        this.user = user;
-//        this.store = store;
-//        this.rating = rating;
-//        this.text = text;
-//    }
-
-    public VisitLog(Store store, float rating, String text) {
-        this.store = store;
+    public VisitLog(UUID storeId, float rating, String text) {
+        this.storeId = storeId;
         this.rating = rating;
         this.text = text;
     }
