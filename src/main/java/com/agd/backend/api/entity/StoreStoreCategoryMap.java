@@ -1,6 +1,5 @@
 package com.agd.backend.api.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,9 +16,8 @@ import java.util.UUID;
 @Setter(AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "visit_log")
-@EqualsAndHashCode(of = "id")
-public class VisitLog {
+@Table(name = "store_store_category_map")
+public class StoreStoreCategoryMap {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -34,22 +32,15 @@ public class VisitLog {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
-    @Column
-    private Long userId;
-
     @Type(type = "uuid-char")
-    @Column(length = 36)
+    @Column(length = 36, nullable = false)
     private UUID storeId;
 
     @Column(nullable = false)
-    private float rating;
+    private Long storeCategoryId;
 
-    @Column(nullable = false, length = 500)
-    private String text;
-
-    public VisitLog(UUID storeId, float rating, String text) {
+    public StoreStoreCategoryMap(UUID storeId, Long storeCategoryId) {
         this.storeId = storeId;
-        this.rating = rating;
-        this.text = text;
+        this.storeCategoryId = storeCategoryId;
     }
 }
