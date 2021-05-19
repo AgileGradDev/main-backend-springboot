@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Api(tags = {"VisitLog"})
@@ -28,6 +29,11 @@ public class VisitLogController {
     ) {
         return visitLogService.createVisitLog(store_id, rating, text);
     }
+
+//    @GetMapping(value = "/{storeId}")
+//    public List<VisitLog> list(@PathVariable UUID storeId) {
+//
+//    }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(

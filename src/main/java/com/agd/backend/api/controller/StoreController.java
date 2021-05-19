@@ -38,7 +38,7 @@ public class StoreController {
     }
 
     @ApiOperation(value = "상점 등록", notes = "상점 등록한다.")
-    @PostMapping(value = "/create")
+    @PostMapping(value = "/")
     public SingleResult<Store> make_store(@ApiParam(value = "식당 이름", required = true) @RequestParam String name,
                                           @ApiParam(value = "식당 설명", required = true) @RequestParam String detail,
                                           @ApiParam(value = "식당 영업 시간", required = true) @RequestParam String hours_operation,
@@ -56,7 +56,7 @@ public class StoreController {
     }
 
     @ApiOperation(value = "상점 정보 갱신", notes = "이름으로 상점 찾아서 해당 상점 정보를 갱신한다.")
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/")
     public SingleResult<Store> modify_store(
             @ApiParam(value = "기존 식당 이름", required = true) @RequestParam String name,
             @ApiParam(value = "새로운 식당 이름. 안바꿀거면 그대로.", required = true) @RequestParam String new_name,
@@ -77,7 +77,7 @@ public class StoreController {
     }
 
     @ApiOperation(value = "상점 해지", notes = "상점 이름으로 삭제한다.")
-    @DeleteMapping(value = "/delete/{name}")
+    @DeleteMapping(value = "/{name}")
     public CommonResult delete_store(
             @ApiParam(value = "식당 이름", required = true) @PathVariable String name) {
         storeRepository.deleteByName(name);
