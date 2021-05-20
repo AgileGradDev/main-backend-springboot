@@ -44,7 +44,7 @@ public class VisitLog {
     @Column(nullable = false)
     private float rating;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, columnDefinition="TEXT")
     private String text;
 
     public VisitLog(UUID storeId, float rating, String text) {

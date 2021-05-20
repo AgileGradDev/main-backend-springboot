@@ -49,9 +49,6 @@ public class User implements UserDetails {
     @Column(length = 100)
     private String provider;
 
-    @Column
-    private Boolean isEnabled;
-
 
     @Column
     @ElementCollection(fetch = FetchType.EAGER)

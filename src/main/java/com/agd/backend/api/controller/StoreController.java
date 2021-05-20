@@ -48,7 +48,7 @@ public class StoreController {
         Store store = Store.builder()
                 .name(name)
                 .description(detail)
-                .opening_hours(hours_operation)
+                .openingHours(hours_operation)
                 .rating(rating)
                 .location(location)
                 .build();
@@ -69,7 +69,7 @@ public class StoreController {
         Store store = Store.builder()
                 .name(new_name)
                 .description(detail)
-                .opening_hours(hours_operation)
+                .openingHours(hours_operation)
                 .rating(rating)
                 .location(location)
                 .build();

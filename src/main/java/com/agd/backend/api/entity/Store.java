@@ -37,11 +37,17 @@ public class Store {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 1000)
+    @Column(columnDefinition="TEXT")
     private String description;
 
-    @Column(length = 50, nullable = false)
-    private String opening_hours;
+    @Column(length = 100, nullable = false)
+    private String openingHours;
+
+    @Column(length = 100, nullable = false)
+    private String closedOn;
+
+    @Column(length = 100, nullable = false)
+    private String phone;
 
     @Column(nullable = false)
     private float rating;
